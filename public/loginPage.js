@@ -1,23 +1,23 @@
-'use strict';
+"use strict"
 
 const userForm = new UserForm();
-
-userForm.loginFormCallback = data => {
-	ApiConnector.login(data, response => {
-		if (response) {
-			location.reload();
-		} else {
-			user.setLoginErrorMessage();
-		}
-	})
-};
-
-userForm.registerFormCallback = data => {
-	ApiConnector.register(data, response => {
-		if (response) {
-			location.reload();
-		} else {
-			user.setRegisterErrorMessage();
-		}
-	})
-};
+// Авторизация
+userForm.loginFormCallback = (data = {login: null, password: null}) => {
+  ApiConnector.login(data, (response)=>{
+    if (response.success) {
+      location.reload();
+    } else {
+      alert(response.data);
+    }
+  })
+}
+// Регистрация
+userForm.registerFormCallback = (data = {login: null, password: null}) => {
+  ApiConnector.register(data, (response)=>{
+    if (response.success) {
+      location.reload();
+    } else {
+      alert(response.data);
+    }
+  })
+}
